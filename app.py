@@ -68,23 +68,30 @@ tab = st.sidebar.radio("Select Tab", ["Watch Segmentation", "Feedbacks", "About"
 model_path = "/tmp/unet.keras"
 google_drive_file_id = "11MstxV8kt1fEHiLtnAe38kjgU7ru9xik"  # Replace with your actual file ID
 
-# Download the model if it doesn't exist
-if not os.path.exists(model_path):
-    st.write("Downloading UNet model... Please wait.")
+# Cache model loading to avoid downloading every time
+@st.cache_resource
+def load_model():
+    # Download the model if it doesn't exist
+    if not os.path.exists(model_path):
+        st.write("Downloading UNet model... Please wait.")
+        try:
+            gdown.download(f"https://drive.google.com/uc?id={google_drive_file_id}", model_path, quiet=False)
+            st.success("Model downloaded successfully!")
+        except Exception as e:
+            st.error(f"Failed to download the model: {e}")
+            st.stop()
+    
+    # Load the UNet model with custom objects
     try:
-        gdown.download(f"https://drive.google.com/uc?id={google_drive_file_id}", model_path, quiet=False)
-        st.success("Model downloaded successfully!")
+        model = tf.keras.models.load_model(model_path, custom_objects={'iou_loss': iou_loss, 'iou_coef': iou_coef})
+        st.success("UNet model loaded successfully!")
+        return model
     except Exception as e:
-        st.error(f"Failed to download the model: {e}")
+        st.error(f"Error loading model: {e}")
         st.stop()
 
-# Load the UNet model with custom objects
-try:
-    model = tf.keras.models.load_model(model_path, custom_objects={'iou_loss': iou_loss, 'iou_coef': iou_coef})
-    st.success("UNet model loaded successfully!")
-except Exception as e:
-    st.error(f"Error loading model: {e}")
-    st.stop()
+# Load model once and keep it cached
+model = load_model()
 
 # Watch Segmentation Tab
 if tab == "Watch Segmentation":
