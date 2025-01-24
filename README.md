@@ -23,7 +23,7 @@ The dataset used for training the model is available on Google Drive. It contain
 
 You can access the dataset here:
 
-[Watch Segmentation Dataset]([https://drive.google.com/drive/folders/17T7n7lal59dSMcWHifzkB_f_HWE1jNor?usp=sharing](https://drive.google.com/drive/folders/1k2at908I7icUQqK0nlhdqLPKQXarh9hk?usp=sharing))
+[Watch Segmentation Dataset]([https://drive.google.com/drive/folders/17T7n7lal59dSMcWHifzkB_f_HWE1jNor?usp=sharing](https://drive.google.com/drive/folders/1k2at908I7icUQqK0nlhdqLPKQXarh9hk?usp=sharing)
 
 ### Dataset Details:
 - **Number of Classes**: 2 (Background and Watch)
