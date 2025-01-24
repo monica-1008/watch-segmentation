@@ -30,6 +30,12 @@ You can access the dataset here:
 - **Image Annotations**: Segmentation masks annotated for training.
 - **Image Types**: High-resolution images of various types of watches.
 
+## Model Weights
+
+The trained UNET model weights are available for download. You can use these weights to replicate the results or further fine-tune the model for your use case.
+
+[Download Model Weights](https://drive.google.com/file/d/11MstxV8kt1fEHiLtnAe38kjgU7ru9xik/view?usp=sharing)
+
 ## Usage
 
 Once the app is up and running, simply upload an image of a watch, and the system will return the segmented output.
