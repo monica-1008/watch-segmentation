@@ -38,4 +38,4 @@ The trained UNET model weights are available for download. You can use these wei
 
 ## Usage
 
-Once the app is up and running, simply upload an image of a watch, and the system will return the segmented output.
+Once the app is up and running, simply upload an image, and the system will return the segmented output.
